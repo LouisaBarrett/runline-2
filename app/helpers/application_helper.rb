@@ -7,6 +7,8 @@ module ApplicationHelper
       seconds_remaining = (seconds - (minutes * 60 + hours * 3600))
       if hours >= 1
         "%01d:%02d:%02d" % [hours, minutes, seconds_remaining]
+      elsif minutes == 0
+        "%02d:%02d" % [minutes, seconds_remaining]
       elsif minutes <= 9
         "%01d:%02d" % [minutes, seconds_remaining]
       else

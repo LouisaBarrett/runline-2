@@ -13,9 +13,9 @@ describe "Formatting" do
     expect("25:00").to eq(formatter)
   end
 
-  xit "formats for seconds that are less than 1 minute" do
+  it "formats for seconds that are less than 1 minute" do
     seconds = 54
-    formatter = ApplicationHelper::formatting.format_pace(seconds)
+    formatter = ApplicationHelper::Formatting.format_pace(seconds)
     expect("00:54").to eq(formatter)
   end
 
