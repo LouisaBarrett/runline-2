@@ -25,10 +25,4 @@ class Run < ActiveRecord::Base
     ApplicationHelper::Formatting.format_pace((self.run_time / self.miles))
   end
 
-  def format_date
-    workout_datetime.to_time.strftime("%a, %m/%d/%y")
-  end
-
-
-
 end

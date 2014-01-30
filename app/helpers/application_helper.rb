@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   class Formatting
-    def self.format_for(seconds)
+    def self.format_for_seconds(seconds)
       hours = (seconds/3600).to_i
       minutes = ((seconds/60) - (hours *  60)).to_i
       seconds_remaining = (seconds - (minutes * 60 + hours * 3600))
@@ -16,9 +16,10 @@ module ApplicationHelper
       end
     end
 
-  def format_for(date)
-    run.workout_datetime.to_time.strftime("%a, %m/%d/%y")
-  end
+    def self.format_for_date(input_date)
+      date = Time.parse(input_date)
+      date.strftime("%a, %m/%d/%y")
+    end
   end
 
 end

@@ -77,7 +77,7 @@ describe User do
   end
 
   it "can find the difference in pace between 2 users" do
-    expect(@user1.compare_total_average_mile_pace_with(@user2)).to eq("0:40")
+    expect(@user1.compare_total_average_mile_pace_with(@user2)).to eq("00:40")
   end
 
   it "can find all users that are not pending or approved friends or myself" do
