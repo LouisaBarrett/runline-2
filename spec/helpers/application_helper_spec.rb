@@ -19,9 +19,9 @@ describe "Formatting" do
     expect("00:54").to eq(formatter)
   end
 
-  xit "can accept seconds that are integers or floats" do
+  it "can accept seconds that are integers or floats" do
     seconds = 1159.2
-    formatter = ApplicationHelper::formatting.format_pace(seconds)
+    formatter = ApplicationHelper::Formatting.format_pace(seconds)
     expect("19:32")
   end
 end
