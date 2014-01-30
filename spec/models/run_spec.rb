@@ -10,7 +10,6 @@ describe Run do
   it { should validate_presence_of(:run_time) }
   it { should validate_presence_of(:workout_datetime) }
   it { should belong_to(:user) }
-  # it { should validate_uniqueness_of(:workout_datetime) }
 
   it "should be created with valid attributes" do 
     FactoryGirl.create(:run).should be_valid
@@ -29,22 +28,22 @@ describe Run do
     expect(run2.miles).to eq(6.21)
   end
 
-  it "converts the run time to hours, minutes and seconds" do 
-    run = FactoryGirl.create(:run)
-    expect(run.time_in_minutes).to eq("15:40")
-    run2 = FactoryGirl.create(:second_run, :run_time => 5200)
-    expect(run2.time_in_minutes).to eq("1:26:40")
-    run3 = FactoryGirl.create(:second_run, :run_time => 10400)
-    expect(run3.time_in_minutes).to eq("2:53:20")
-    run4 = FactoryGirl.create(:run, :run_time => 94)
-    expect(run4.time_in_minutes).to eq("1:34")
-  end
+  # it "converts the run time to hours, minutes and seconds" do 
+  #   run = FactoryGirl.create(:run)
+  #   expect(run.time_in_minutes).to eq("15:40")
+  #   run2 = FactoryGirl.create(:second_run, :run_time => 5200)
+  #   expect(run2.time_in_minutes).to eq("1:26:40")
+  #   run3 = FactoryGirl.create(:second_run, :run_time => 10400)
+  #   expect(run3.time_in_minutes).to eq("2:53:20")
+  #   run4 = FactoryGirl.create(:run, :run_time => 94)
+  #   expect(run4.time_in_minutes).to eq("1:34")
+  # end
 
-  it "finds the total distance in miles for all a user's runs" do 
+  xit "finds the total miles for all a user's runs" do 
     run = FactoryGirl.create(:run)
     run2 = FactoryGirl.create(:second_run)
     expect(@user1.runs.count).to eq(2)
-    expect(@user1.total_distance_in_miles).to eq(9.32)
+    expect(@user1.runs.total_miles).to eq(9.320591049747101)
   end
 
   it "finds the average mile pace for all a user's runs" do 

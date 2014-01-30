@@ -9,7 +9,7 @@ class RunStatCalculator
       user.runs.each do |run|
         total_distance += run.miles
       end
-      Formatting.format_seconds_for_views(total_seconds / user.total_distance_in_miles)
+      ApplicationHelper::Formatting.format_seconds_for_views(total_seconds / user.total_distance_in_miles)
     end
 
     def pace_for(user)
@@ -22,15 +22,16 @@ class RunStatCalculator
         total_distance += run.miles
       end
       total_seconds/total_distance 
+      # binding.pry
     end
 
     def compare_total_average_mile_pace_for(user, friend)
       if user.pace > friend.pace
         diff = user.pace - friend.pace
-        "#{Formatting.format_seconds_for_views(diff)}"
+        "#{ApplicationHelper::Formatting.format_pace(diff)}"
       else
         diff = friend.pace - user.pace
-        "#{Formatting.format_seconds_for_views(diff)}"
+        "#{ApplicationHelper::Formatting.format_pace(diff)}"
       end
     end
 
