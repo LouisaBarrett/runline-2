@@ -12,11 +12,11 @@ class Run < ActiveRecord::Base
   end
 
   def time_in_minutes
-    Formatting.format_seconds_for_views(self.run_time)
+    ApplicationHelper::Formatting.format_pace(self.run_time)
   end
 
   def mile_pace_in_minutes
-    Formatting.format_seconds_for_views((self.run_time / self.miles))
+    ApplicationHelper::Formatting.format_pace((self.run_time / self.miles))
   end
 
   def format_date
