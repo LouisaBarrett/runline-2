@@ -11,12 +11,6 @@ class Run < ActiveRecord::Base
     result.round(2)
   end
 
-  # def total_miles
-  #   self.runs.map do |run|
-  #     run.distance
-  #   end.reduce(0, :+)
-  # end
-
   def time_in_minutes
     ApplicationHelper::Formatting.format_pace(self.run_time)
   end
