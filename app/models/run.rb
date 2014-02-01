@@ -11,12 +11,16 @@ class Run < ActiveRecord::Base
     result.round(2)
   end
 
+  def format_date
+    ApplicationHelper::Formatting.format_for_date(self.workout_datetime)
+  end
+
   def time_in_minutes
-    ApplicationHelper::Formatting.format_pace(self.run_time)
+    ApplicationHelper::Formatting.format_for_seconds(self.run_time)
   end
 
   def mile_pace_in_minutes
-    ApplicationHelper::Formatting.format_pace((self.run_time / self.miles))
+    ApplicationHelper::Formatting.format_for_seconds((self.run_time / self.miles))
   end
 
 end

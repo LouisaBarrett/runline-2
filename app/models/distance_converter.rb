@@ -8,5 +8,4 @@ class DistanceConverter
   def miles
     distance / 1609.34
   end
-
 end
