@@ -6,10 +6,9 @@ class DashboardsController < ApplicationController
     else
       @my_runs = current_user.runs
       @user_distance = current_user_total_distance
+      @user_longest_run = current_user_longest_run
     end
   end
-
-
 
   def no_runs
 
@@ -24,6 +23,12 @@ class DashboardsController < ApplicationController
 
   def current_user_total_distance
     meters = Calculator.new(current_user).total_distance
+    miles = DistanceConverter.new(meters).miles
+    Formatter.new.format_for_miles(miles)
+  end
+
+  def current_user_longest_run
+    meters = Calculator.new(current_user).longest_run
     miles = DistanceConverter.new(meters).miles
     Formatter.new.format_for_miles(miles)
   end
