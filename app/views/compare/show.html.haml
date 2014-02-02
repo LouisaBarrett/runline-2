@@ -12,17 +12,17 @@
         %dt.compare-term= current_user.username
 
         %dd.compare-item
-          %span.data<> #{current_user.total_distance_in_miles}
+          %span.data<> #{@user_total_distance}
           %span.data-marker mi
           %p.data-title Total Distance
 
         %dd.compare-item
-          %span.data<> #{current_user.total_average_mile_pace}
+          %span.data<> #{@user_average_pace}
           %span.data-marker /mi
           %p.data-title Average Pace
 
         %dd.compare-item
-          %span.data<> #{current_user.longest_run.miles}
+          %span.data<> #{@user_longest_run}
           %span.data-marker mi
           %p.data-title Longest Run
 

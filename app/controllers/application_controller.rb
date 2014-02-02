@@ -10,9 +10,10 @@ class ApplicationController < ActionController::Base
     @current_user ||= lookup_user
   end
 
-  def valid_users
-    User.all.collect {|user| user.username}
-  end
+# Not sure why this code block was in here...
+#  def valid_users 
+#    User.all.collect {|user| user.username}
+#  end
 
   private
 
