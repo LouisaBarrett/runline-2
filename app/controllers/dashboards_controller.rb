@@ -5,8 +5,9 @@ class DashboardsController < ApplicationController
       redirect_to no_runs_path
     else
       @my_runs = current_user.runs
-      @user_distance = current_user_total_distance
+      @user_total_distance = current_user_total_distance
       @user_longest_run = current_user_longest_run
+      @user_average_pace = current_user_average_pace
     end
   end
 
@@ -31,5 +32,10 @@ class DashboardsController < ApplicationController
     meters = Calculator.new(current_user).longest_run
     miles = DistanceConverter.new(meters).miles
     Formatter.new.format_for_miles(miles)
+  end
+
+  def current_user_average_pace
+    seconds = Calculator.new(current_user).total_average_pace_per_mile
+    Formatter.new.format_for_seconds(seconds)
   end
 end
