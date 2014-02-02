@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
 
   def create
     friend = User.find(params[:user_id])
-    if current_user.add_friend(friend)
+    if AddFriendUseCase.new(current_user, friend).run!
       flash[:notice] = {:class => "flash", :body => "Your request to #{friend.username} has been sent!"}
     else
       flash[:notice] = {:class =>  "flash", :body => "Could not find that user!"}

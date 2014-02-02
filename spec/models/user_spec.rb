@@ -48,12 +48,6 @@ describe User do
     expect(@user1.friends.count).to eq(2)
   end
 
-  it "can request a friend" do
-    @user1.add_friend(@user4)
-    @user1.add_friend(@user5)
-    expect(@user1.total_pending_friends.count).to eq(3)
-  end
-
   it "has total approved friends" do
     expect(@user1.total_approved_friends.count).to_not eq(0)
   end

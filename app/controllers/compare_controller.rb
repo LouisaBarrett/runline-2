@@ -12,6 +12,7 @@ class CompareController < ApplicationController
       @user_total_distance = current_user_total_distance
       @user_longest_run = current_user_longest_run
       @user_average_pace = current_user_average_pace
+
     end
   end
 
