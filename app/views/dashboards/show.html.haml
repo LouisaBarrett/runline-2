@@ -6,17 +6,17 @@
   %dl.dash-stats
     %dt
     %dd.dash-set
-      %span.data<> #{@user_total_distance}
+      %span.data<> #{@stats.total_distance}
       %span.data-marker mi
       %p.data-title Total Distance
 
     %dd.dash-set
-      %span.data<> #{@user_average_pace}
+      %span.data<> #{@stats.average_pace}
       %span.data-marker /mi
       %p.data-title Average Pace
 
     %dd.dash-set
-      %span.data<> #{@user_longest_run}
+      %span.data<> #{@stats.longest_run}
       %span.data-marker mi
       %p.data-title Longest Run
 
@@ -30,7 +30,7 @@
         %th.caption Time
         %th.caption Average Pace
         %tbody
-        - @my_runs.each do |run|
+        - @stats.runs.each do |run|
           %tr
             %td
               = run.name

@@ -1,16 +1,16 @@
 class Calculator
-  attr_reader :user
+  attr_reader :runs
 
-  def initialize(user)
-    @user = user
+  def initialize(runs)
+    @runs = runs
   end
 
   def total_distance
-    user.runs.collect(&:distance).reduce(0, :+)
+    runs.collect(&:distance).reduce(0, :+)
   end
 
   def longest_run 
-    longest_run = user.runs.max_by { |run| run.distance }
+    longest_run = runs.max_by { |run| run.distance }
     longest_run.distance
   end
 
@@ -22,6 +22,6 @@ class Calculator
   private
 
   def total_seconds
-    user.runs.collect(&:run_time).reduce(0, :+).to_f
+    runs.collect(&:run_time).reduce(0, :+).to_f
   end
 end

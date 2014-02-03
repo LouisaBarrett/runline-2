@@ -30,19 +30,19 @@ class CompareController < ApplicationController
   private
 
   def current_user_total_distance
-    meters = Calculator.new(current_user).total_distance
+    meters = Calculator.new(current_user.runs).total_distance
     miles = DistanceConverter.new(meters).miles
     Formatter.new.format_for_miles(miles)
   end
 
   def current_user_longest_run
-    meters = Calculator.new(current_user).longest_run
+    meters = Calculator.new(current_user.runs).longest_run
     miles = DistanceConverter.new(meters).miles
     Formatter.new.format_for_miles(miles)
   end
 
   def current_user_average_pace
-    seconds = Calculator.new(current_user).total_average_pace_per_mile
+    seconds = Calculator.new(current_user.runs).total_average_pace_per_mile
     Formatter.new.format_for_seconds(seconds)
   end
 end
