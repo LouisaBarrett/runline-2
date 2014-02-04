@@ -12,17 +12,17 @@
         %dt.compare-term= current_user.username
 
         %dd.compare-item
-          %span.data<> #{current_user.total_distance_in_miles}
+          %span.data<> #{@user_stats.total_distance.round(2)}
           %span.data-marker mi
           %p.data-title Total Distance
 
         %dd.compare-item
-          %span.data<> #{current_user.total_average_mile_pace}
+          %span.data<> #{Formatter.new.format_for_seconds(@user_stats.average_pace)}
           %span.data-marker /mi
           %p.data-title Average Pace
 
         %dd.compare-item
-          %span.data<> #{current_user.longest_run.miles}
+          %span.data<> #{@user_stats.longest_run.round(2)}
           %span.data-marker mi
           %p.data-title Longest Run
 
@@ -31,17 +31,17 @@
         %dt.compare-term= @friend.username
 
         %dd.compare-item
-          %span.data<> #{@friend.total_distance_in_miles}
+          %span.data<> #{@friend_stats.total_distance.round(2)}
           %span.data-marker mi
           %p.data-title Total Distance
 
         %dd.compare-item
-          %span.data<> #{@friend.total_average_mile_pace}
+          %span.data<> #{Formatter.new.format_for_seconds(@friend_stats.average_pace)}
           %span.data-marker /mi
           %p.data-title Average Pace
 
         %dd.compare-item
-          %span.data<> #{@friend.longest_run.miles}
+          %span.data<> #{@friend_stats.longest_run.round(2)}
           %span.data-marker mi
           %p.data-title Longest Run
 
@@ -49,36 +49,36 @@
       %dl.compare-stat-list
         %dt.compare-term Difference
 
-        - if @diff_miles > 0
+        - if @diff.miles > 0
           %dd.compare-item.diff-positive
-            %span.data<> #{@diff_miles}
+            %span.data<> #{@diff.miles.round(2)}
             %span.data-marker mi
             %p.data-title Longer
         - else
           %dd.compare-item.diff-negative
-            %span.data<> #{@diff_miles}
+            %span.data<> #{@diff.miles.round(2)}
             %span.data-marker mi
             %p.data-title Shorter
 
-        - if @diff_pace < 0
+        - if @diff.pace < 0
           %dd.compare-item.diff-positive
-            %span.data<> #{current_user.compare_total_average_mile_pace_with(@friend)}
+            %span.data<> #{Formatter.new.format_for_seconds(@diff.pace.abs)}
             %span.data-marker /mi
             %p.data-title Faster
         - else
           %dd.compare-item.diff-negative
-            %span.data<> #{current_user.compare_total_average_mile_pace_with(@friend)}
+            %span.data<> #{Formatter.new.format_for_seconds(@diff.pace.abs)}
             %span.data-marker /mi
             %p.data-title Slower
 
-        - if @diff_longest_run > 0
+        - if @diff.longest_run > 0
           %dd.compare-item.diff-positive
-            %span.data<> #{@diff_longest_run}
+            %span.data<> #{@diff.longest_run.round(2)}
             %span.data-marker mi
             %p.data-title Longer
         - else 
           %dd.compare-item.diff-negative
-            %span.data<> #{@diff_longest_run}
+            %span.data<> #{@diff.longest_run.round(2)}
             %span.data-marker mi
             %p.data-title Shorter
 
@@ -94,18 +94,18 @@
             %th.caption Time
             %th.caption Average Pace
             %tbody
-            - @my_runs.each do |run|
+            - @user_stats.logged_runs.each do |run|
               %tr
                 %td
                   = run.name
                 %td
-                  = run.format_date
+                  = run.date
                 %td
-                  = "#{run.miles} mi"
+                  = "#{run.miles.round(2)} mi"
                 %td
-                  = run.time_in_minutes 
+                  = run.stopwatch 
                 %td
-                  = "#{run.mile_pace_in_minutes} /mi"
+                  = "#{run.pace} /mi"
       %div.compare-logs
         %h2.table-title Run Logs:  #{@friend.username}
       %table.table-main
@@ -117,15 +117,15 @@
             %th.caption Time
             %th.caption Average Pace
             %tbody
-            - @friend_runs.each do |run|
+            - @friend_stats.logged_runs.each do |run|
               %tr
                 %td
                   = run.name
                 %td
-                  = run.format_date
+                  = run.date
                 %td
-                  = "#{run.miles} mi"
+                  = "#{run.miles.round(2)} mi"
                 %td
-                  = run.time_in_minutes 
+                  = run.stopwatch 
                 %td
-                  = "#{run.mile_pace_in_minutes} /mi"
+                  = "#{run.pace} /mi"

@@ -6,17 +6,17 @@
   %dl.dash-stats
     %dt
     %dd.dash-set
-      %span.data<> #{current_user.total_distance_in_miles}
+      %span.data<> #{@stats.total_distance.round(2)}
       %span.data-marker mi
       %p.data-title Total Distance
 
     %dd.dash-set
-      %span.data<> #{current_user.total_average_mile_pace}
+      %span.data<> #{Formatter.new.format_for_seconds(@stats.average_pace)}
       %span.data-marker /mi
       %p.data-title Average Pace
 
     %dd.dash-set
-      %span.data<> #{current_user.longest_run.miles}
+      %span.data<> #{@stats.longest_run.round(2)}
       %span.data-marker mi
       %p.data-title Longest Run
 
@@ -30,15 +30,15 @@
         %th.caption Time
         %th.caption Average Pace
         %tbody
-        - @my_runs.each do |run|
+        - @stats.logged_runs.each do |run|
           %tr
             %td
               = run.name
             %td
-              = run.format_date
+              = run.date
             %td
-              = "#{run.miles} mi"
+              = "#{run.miles.round(2)} mi"
             %td
-              = run.time_in_minutes 
+              = run.stopwatch 
             %td
-              = "#{run.mile_pace_in_minutes} /mi"
+              = "#{run.pace} /mi"

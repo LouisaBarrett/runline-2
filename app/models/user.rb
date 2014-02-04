@@ -6,11 +6,17 @@ class User < ActiveRecord::Base
 
   has_many :runs
   has_many :friendships
+  # has_many :friendships, ->(user) { unscoped.where("friend_id = :id or user_id = :id", id: user.id) }
+  # # has_many :friendships, ->(user) { where((:id => user.id) | (:friend_id => user.id)) }
   has_many :friends, :through => :friendships
   has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   scope :except, proc {|user| where("id != ?", user.id)}
+
+  def all_friendships
+    Friendship.where("friend_id = :id or user_id = :id", id: id)
+  end
 
   def self.find_or_create_by_auth(user_data)
     where(:provider => user_data.provider, :uid => user_data.uid).first_or_create(
@@ -34,11 +40,6 @@ class User < ActiveRecord::Base
      end
   end
 
-  def add_friend(friend)
-    unless total_approved_friends.include?(friend)
-      create_or_update_friendship(friend)
-    end
-  end
 
   def approve_friend(friend)
     friendship = Friendship.find_by(user_id: friend.id, friend_id: id) ||
@@ -46,48 +47,11 @@ class User < ActiveRecord::Base
     friendship.update(status: "approved")
   end
 
-  def create_or_update_friendship(friend)
-    Friendship.create(user_id: id, friend_id: friend.id, status: "pending")
-    User.send_friend_request_email(friend.email, self.username)
-  end
-
   def self.invite_new_friend_email(email, username)
     link = "http://runline.tk"
     FriendRequestNotifier.invite_new_friend(email, username, link).deliver
   end
 
-  def self.send_friend_request_email(email, username)
-    link = "http://runline.tk"
-    FriendRequestNotifier.request_friend(email, username, link).deliver
-  end
-
-  def total_average_mile_pace
-    RunStatCalculator.total_average_mile_pace_for(self)
-  end
-
-  def compare_total_average_mile_pace_with(friend)
-    RunStatCalculator.compare_total_average_mile_pace_for(self, friend)
-  end
-
-  def pace
-    RunStatCalculator.pace_for(self)
-  end
-
-  def total_distance_in_miles
-    RunStatCalculator.total_distance_in_miles_for(self)
-  end
-
-  def fastest_run
-    RunStatCalculator.fastest_run_for(self)
-  end
-
-  def fastest_mile_pace
-    RunStatCalculator.fastest_mile_pace_for(self)
-  end
-
-  def longest_run
-    RunStatCalculator.longest_run_for(self)
-  end
 
   def self.requestable_users(user)
     potential_friends = []
