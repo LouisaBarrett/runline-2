@@ -17,7 +17,7 @@
           %p.data-title Total Distance
 
         %dd.compare-item
-          %span.data<> #{@user_stats.average_pace}
+          %span.data<> #{Formatter.new.format_for_seconds(@user_stats.average_pace)}
           %span.data-marker /mi
           %p.data-title Average Pace
 
@@ -36,7 +36,7 @@
           %p.data-title Total Distance
 
         %dd.compare-item
-          %span.data<> #{@friend_stats.average_pace}
+          %span.data<> #{Formatter.new.format_for_seconds(@friend_stats.average_pace)}
           %span.data-marker /mi
           %p.data-title Average Pace
 

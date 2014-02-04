@@ -14,8 +14,7 @@ class Stats
   end
 
   def average_pace
-    seconds = calc.total_average_pace_per_mile
-    Formatter.new.format_for_seconds(seconds)
+    calc.total_average_pace_per_mile
   end
 
   def logged_runs

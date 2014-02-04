@@ -11,7 +11,7 @@
       %p.data-title Total Distance
 
     %dd.dash-set
-      %span.data<> #{@stats.average_pace}
+      %span.data<> #{Formatter.new.format_for_seconds(@stats.average_pace)}
       %span.data-marker /mi
       %p.data-title Average Pace
 

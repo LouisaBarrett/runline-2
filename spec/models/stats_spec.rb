@@ -19,7 +19,7 @@ describe Stats do
   end
 
   it "presents a runner's average pace per mile" do
-    expect(stats.average_pace).to eq("18:25")
+    expect(stats.average_pace).to eq(1105.8464857142856)
   end
 
   it "has logged runs" do
