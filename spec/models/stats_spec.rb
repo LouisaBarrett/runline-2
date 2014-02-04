@@ -2,6 +2,7 @@ require './app/models/stats.rb'
 require './app/models/calculator.rb'
 require './app/models/distance_converter.rb'
 require './app/models/formatter.rb'
+require './app/models/logged_run.rb'
 
 
 describe Stats do
@@ -19,6 +20,10 @@ describe Stats do
 
   it "presents a runner's average pace per mile" do
     expect(stats.average_pace).to eq("18:25")
+  end
+
+  it "has logged runs" do
+    expect(stats.logged_runs.map(&:stopwatch)).to eq(["40:55", "39:15"])
   end
 
 end

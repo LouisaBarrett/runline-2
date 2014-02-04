@@ -18,6 +18,12 @@ class Stats
     Formatter.new.format_for_seconds(seconds)
   end
 
+  def logged_runs
+    runs.map do |run|
+      LoggedRun.new(run)
+    end
+  end
+
   private
 
   def calc

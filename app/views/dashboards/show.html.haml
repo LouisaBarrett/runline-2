@@ -30,15 +30,15 @@
         %th.caption Time
         %th.caption Average Pace
         %tbody
-        - @stats.runs.each do |run|
+        - @stats.logged_runs.each do |run|
           %tr
             %td
               = run.name
             %td
-              = run.format_date
+              = run.date
             %td
               = "#{run.miles} mi"
             %td
-              = run.time_in_minutes 
+              = run.stopwatch 
             %td
-              = "#{run.mile_pace_in_minutes} /mi"
+              = "#{run.pace} /mi"
