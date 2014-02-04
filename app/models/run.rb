@@ -7,8 +7,7 @@ class Run < ActiveRecord::Base
   validates :workout_datetime, presence: true
 
   def miles
-    result = self.distance / 1609.34
-    result.round(2)
+    self.distance / 1609.34
   end
 
   def format_date

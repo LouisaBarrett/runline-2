@@ -11,11 +11,11 @@ describe Stats do
   let(:stats){Stats.new(runs)}
 
   it "presents a runner's total distance in miles rounded two decimal places" do
-    expect(stats.total_distance).to eq(4.35)
+    expect(stats.total_distance).to eq(4.349609156548648)
   end
 
   it "presents a runner's longest run in miles rounded two decimal places" do
-    expect(stats.longest_run).to eq(2.49)
+    expect(stats.longest_run).to eq(2.485490946599227)
   end
 
   it "presents a runner's average pace per mile" do

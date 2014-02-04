@@ -6,7 +6,7 @@
   %dl.dash-stats
     %dt
     %dd.dash-set
-      %span.data<> #{@stats.total_distance}
+      %span.data<> #{@stats.total_distance.round(2)}
       %span.data-marker mi
       %p.data-title Total Distance
 
@@ -16,7 +16,7 @@
       %p.data-title Average Pace
 
     %dd.dash-set
-      %span.data<> #{@stats.longest_run}
+      %span.data<> #{@stats.longest_run.round(2)}
       %span.data-marker mi
       %p.data-title Longest Run
 
@@ -37,7 +37,7 @@
             %td
               = run.date
             %td
-              = "#{run.miles} mi"
+              = "#{run.miles.round(2)} mi"
             %td
               = run.stopwatch 
             %td

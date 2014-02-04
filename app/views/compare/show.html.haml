@@ -12,7 +12,7 @@
         %dt.compare-term= current_user.username
 
         %dd.compare-item
-          %span.data<> #{@user_stats.total_distance}
+          %span.data<> #{@user_stats.total_distance.round(2)}
           %span.data-marker mi
           %p.data-title Total Distance
 
@@ -22,7 +22,7 @@
           %p.data-title Average Pace
 
         %dd.compare-item
-          %span.data<> #{@user_stats.longest_run}
+          %span.data<> #{@user_stats.longest_run.round(2)}
           %span.data-marker mi
           %p.data-title Longest Run
 
@@ -31,7 +31,7 @@
         %dt.compare-term= @friend.username
 
         %dd.compare-item
-          %span.data<> #{@friend_stats.total_distance}
+          %span.data<> #{@friend_stats.total_distance.round(2)}
           %span.data-marker mi
           %p.data-title Total Distance
 
@@ -41,7 +41,7 @@
           %p.data-title Average Pace
 
         %dd.compare-item
-          %span.data<> #{@friend_stats.longest_run}
+          %span.data<> #{@friend_stats.longest_run.round(2)}
           %span.data-marker mi
           %p.data-title Longest Run
 
@@ -51,12 +51,12 @@
 
         - if @diff_miles > 0
           %dd.compare-item.diff-positive
-            %span.data<> #{@diff_miles}
+            %span.data<> #{@diff_miles.round(2)}
             %span.data-marker mi
             %p.data-title Longer
         - else
           %dd.compare-item.diff-negative
-            %span.data<> #{@diff_miles}
+            %span.data<> #{@diff_miles.round(2)}
             %span.data-marker mi
             %p.data-title Shorter
 
@@ -73,12 +73,12 @@
 
         - if @diff_longest_run > 0
           %dd.compare-item.diff-positive
-            %span.data<> #{@diff_longest_run}
+            %span.data<> #{@diff_longest_run.round(2)}
             %span.data-marker mi
             %p.data-title Longer
         - else 
           %dd.compare-item.diff-negative
-            %span.data<> #{@diff_longest_run}
+            %span.data<> #{@diff_longest_run.round(2)}
             %span.data-marker mi
             %p.data-title Shorter
 
@@ -101,7 +101,7 @@
                 %td
                   = run.date
                 %td
-                  = "#{run.miles} mi"
+                  = "#{run.miles.round(2)} mi"
                 %td
                   = run.stopwatch 
                 %td
@@ -124,7 +124,7 @@
                 %td
                   = run.date
                 %td
-                  = "#{run.miles} mi"
+                  = "#{run.miles.round(2)} mi"
                 %td
                   = run.stopwatch 
                 %td

@@ -6,11 +6,11 @@ class Stats
   end
 
   def total_distance
-    format(calc.total_distance)
+    convert(calc.total_distance)
   end
 
   def longest_run
-    format(calc.longest_run)
+    convert(calc.longest_run)
   end
 
   def average_pace
@@ -30,7 +30,7 @@ class Stats
     @calc ||= Calculator.new(runs)
   end
 
-  def format(meters)
-    DistanceConverter.new(meters).miles.round(2)
+  def convert(meters)
+    DistanceConverter.new(meters).miles
   end
 end

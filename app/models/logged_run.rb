@@ -3,7 +3,7 @@ require "delegate"
 class LoggedRun < SimpleDelegator
 
   def miles
-    DistanceConverter.new(distance).miles.round(2)
+    DistanceConverter.new(distance).miles
   end
 
   def stopwatch

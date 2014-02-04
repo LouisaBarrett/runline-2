@@ -12,7 +12,7 @@ describe LoggedRun do
   end
 
   it "displays a run's distance in miles rounded to 2 decimal places" do
-    expect(logged_run.miles).to eq(3.11)
+    expect(logged_run.miles).to eq(3.106863683249034)
   end
 
   it "displays a runtime in stopwatch format" do
