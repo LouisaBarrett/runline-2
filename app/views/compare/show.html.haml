@@ -49,36 +49,36 @@
       %dl.compare-stat-list
         %dt.compare-term Difference
 
-        - if @diff_miles > 0
+        - if @diff.miles > 0
           %dd.compare-item.diff-positive
-            %span.data<> #{@diff_miles.round(2)}
+            %span.data<> #{@diff.miles.round(2)}
             %span.data-marker mi
             %p.data-title Longer
         - else
           %dd.compare-item.diff-negative
-            %span.data<> #{@diff_miles.round(2)}
+            %span.data<> #{@diff.miles.round(2)}
             %span.data-marker mi
             %p.data-title Shorter
 
-        - if @diff_pace < 0
+        - if @diff.pace < 0
           %dd.compare-item.diff-positive
-            %span.data<> #{current_user.compare_total_average_mile_pace_with(@friend)}
+            %span.data<> #{Formatter.new.format_for_seconds(@diff.pace.abs)}
             %span.data-marker /mi
             %p.data-title Faster
         - else
           %dd.compare-item.diff-negative
-            %span.data<> #{current_user.compare_total_average_mile_pace_with(@friend)}
+            %span.data<> #{Formatter.new.format_for_seconds(@diff.pace.abs)}
             %span.data-marker /mi
             %p.data-title Slower
 
-        - if @diff_longest_run > 0
+        - if @diff.longest_run > 0
           %dd.compare-item.diff-positive
-            %span.data<> #{@diff_longest_run.round(2)}
+            %span.data<> #{@diff.longest_run.round(2)}
             %span.data-marker mi
             %p.data-title Longer
         - else 
           %dd.compare-item.diff-negative
-            %span.data<> #{@diff_longest_run.round(2)}
+            %span.data<> #{@diff.longest_run.round(2)}
             %span.data-marker mi
             %p.data-title Shorter
 

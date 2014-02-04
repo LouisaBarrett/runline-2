@@ -13,4 +13,8 @@ class Difference
   def pace
     user_stats.average_pace - friend_stats.average_pace
   end
+
+  def longest_run
+    user_stats.longest_run - friend_stats.longest_run
+  end
 end

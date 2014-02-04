@@ -20,4 +20,8 @@ describe Difference do
   it "compares pace" do
     expect(difference.pace).to eq(-71.41148779735113)
   end
+
+  it "compares longest run" do
+    expect(difference.longest_run).to eq(-0.27588949507251437)
+  end
 end
