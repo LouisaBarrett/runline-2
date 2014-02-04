@@ -16,7 +16,7 @@ describe LoggedRun do
   end
 
   it "displays a runtime in stopwatch format" do
-    expect(logged_run.seconds).to eq("15:40")
+    expect(logged_run.stopwatch).to eq("15:40")
   end
 
   it "displays a run date in 'Day, MM/DD/YY'" do

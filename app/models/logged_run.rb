@@ -6,7 +6,7 @@ class LoggedRun < SimpleDelegator
     DistanceConverter.new(distance).miles.round(2)
   end
 
-  def seconds
+  def stopwatch
     Formatter.new.format_for_seconds(run_time)
   end
 
