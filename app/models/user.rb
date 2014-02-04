@@ -46,33 +46,6 @@ class User < ActiveRecord::Base
     FriendRequestNotifier.invite_new_friend(email, username, link).deliver
   end
 
-  def total_average_mile_pace
-    RunStatCalculator.total_average_mile_pace_for(self)
-  end
-
-  def compare_total_average_mile_pace_with(friend)
-    RunStatCalculator.compare_total_average_mile_pace_for(self, friend)
-  end
-
-  def pace
-    RunStatCalculator.pace_for(self)
-  end
-
-  def total_distance_in_miles
-    RunStatCalculator.total_distance_in_miles_for(self)
-  end
-
-  def fastest_run
-    RunStatCalculator.fastest_run_for(self)
-  end
-
-  def fastest_mile_pace
-    RunStatCalculator.fastest_mile_pace_for(self)
-  end
-
-  def longest_run
-    RunStatCalculator.longest_run_for(self)
-  end
 
   def self.requestable_users(user)
     potential_friends = []
