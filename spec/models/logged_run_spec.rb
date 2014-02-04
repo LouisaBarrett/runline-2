@@ -23,4 +23,8 @@ describe LoggedRun do
     expect(logged_run.date).to eq("Tue, 01/28/14")
   end
 
+  it "displays the pace" do
+    expect(logged_run.pace).to eq("5:02")
+  end
+
 end
