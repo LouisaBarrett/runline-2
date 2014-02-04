@@ -19,7 +19,4 @@ class Formatter
     date.strftime("%a, %m/%d/%y")
   end
 
-  def format_for_miles(miles)
-    miles.round(2)
-  end
 end

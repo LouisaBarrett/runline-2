@@ -27,12 +27,4 @@ describe Formatter do
       expect("Sat, 11/03/12").to eq(Formatter.new.format_for_date(date))
     end
   end
-
-  describe "formatting for distance" do
-    it "formats miles to two decimal points" do
-      run = FactoryGirl.create(:run, distance: "5376.25")
-      miles = DistanceConverter.new(run.distance).miles
-      expect(3.34).to eq(Formatter.new.format_for_miles(miles))
-    end
-  end
 end

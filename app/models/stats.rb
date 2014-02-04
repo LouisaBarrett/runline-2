@@ -25,7 +25,6 @@ class Stats
   end
 
   def format(meters)
-    miles = DistanceConverter.new(meters).miles
-    Formatter.new.format_for_miles(miles)
+    DistanceConverter.new(meters).miles.round(2)
   end
 end
