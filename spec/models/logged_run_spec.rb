@@ -1,6 +1,7 @@
 require "./app/models/logged_run"
 require './app/models/distance_converter.rb'
 require './app/models/formatter.rb'
+require 'spec_helper'
 
 describe LoggedRun do
   FakeSingleRun = Struct.new(:name, :distance, :run_time, :workout_datetime)
