@@ -3,9 +3,9 @@ require 'spec_helper'
 describe DistanceConverter do
 
   before do
-    @user = FactoryGirl.create(:user)
-    FactoryGirl.create(:run, run_time: 100, distance: 4000, user_id: @user.id)
-    FactoryGirl.create(:run, run_time: 200, distance: 3000, user_id: @user.id)
+    @user = create_user
+    create_run(run_time: 100, distance: 4000, user_id: @user.id)
+    create_run(run_time: 200, distance: 3000, user_id: @user.id)
   end
 
   it 'converts total distance into miles' do

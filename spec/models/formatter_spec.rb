@@ -22,7 +22,7 @@ describe Formatter do
 
   describe "formatting for date" do
     it "formats the workout date time to a readable date" do
-      run = FactoryGirl.create(:run, workout_datetime: "2012-11-03T23:12:49+00:00")
+      run = create_run(workout_datetime: "2012-11-03T23:12:49+00:00")
       date = run.workout_datetime
       expect("Sat, 11/03/12").to eq(Formatter.new.format_for_date(date))
     end
