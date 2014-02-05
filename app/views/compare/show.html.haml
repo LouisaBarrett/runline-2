@@ -12,17 +12,17 @@
         %dt.compare-term= current_user.username
 
         %dd.compare-item
-          %span.data<> #{@user_stats.total_distance.round(2)}
+          %span.data<> #{total_distance_in_miles_for(@user_stats)}
           %span.data-marker mi
           %p.data-title Total Distance
 
         %dd.compare-item
-          %span.data<> #{Formatter.new.format_for_seconds(@user_stats.average_pace)}
+          %span.data<> #{average_pace_formatted_for(@user_stats)}
           %span.data-marker /mi
           %p.data-title Average Pace
 
         %dd.compare-item
-          %span.data<> #{@user_stats.longest_run.round(2)}
+          %span.data<> #{longest_run_in_miles_for(@user_stats)}
           %span.data-marker mi
           %p.data-title Longest Run
 
@@ -31,17 +31,17 @@
         %dt.compare-term= @friend.username
 
         %dd.compare-item
-          %span.data<> #{@friend_stats.total_distance.round(2)}
+          %span.data<> #{total_distance_in_miles_for(@friend_stats)}
           %span.data-marker mi
           %p.data-title Total Distance
 
         %dd.compare-item
-          %span.data<> #{Formatter.new.format_for_seconds(@friend_stats.average_pace)}
+          %span.data<> #{average_pace_formatted_for(@friend_stats)}
           %span.data-marker /mi
           %p.data-title Average Pace
 
         %dd.compare-item
-          %span.data<> #{@friend_stats.longest_run.round(2)}
+          %span.data<> #{longest_run_in_miles_for(@friend_stats)}
           %span.data-marker mi
           %p.data-title Longest Run
 
@@ -51,34 +51,34 @@
 
         - if @diff.miles > 0
           %dd.compare-item.diff-positive
-            %span.data<> #{@diff.miles.round(2)}
+            %span.data<> #{compared_miles_for(@diff)}
             %span.data-marker mi
             %p.data-title Longer
         - else
           %dd.compare-item.diff-negative
-            %span.data<> #{@diff.miles.round(2)}
+            %span.data<> #{compared_miles_for(@diff)}
             %span.data-marker mi
             %p.data-title Shorter
 
         - if @diff.pace < 0
           %dd.compare-item.diff-positive
-            %span.data<> #{Formatter.new.format_for_seconds(@diff.pace.abs)}
+            %span.data<> #{compared_pace_for(@diff)}
             %span.data-marker /mi
             %p.data-title Faster
         - else
           %dd.compare-item.diff-negative
-            %span.data<> #{Formatter.new.format_for_seconds(@diff.pace.abs)}
+            %span.data<> #{compared_pace_for(@diff)}
             %span.data-marker /mi
             %p.data-title Slower
 
         - if @diff.longest_run > 0
           %dd.compare-item.diff-positive
-            %span.data<> #{@diff.longest_run.round(2)}
+            %span.data<> #{compared_longest_run_for(@diff)}
             %span.data-marker mi
             %p.data-title Longer
         - else 
           %dd.compare-item.diff-negative
-            %span.data<> #{@diff.longest_run.round(2)}
+            %span.data<> #{compared_longest_run_for(@diff)}
             %span.data-marker mi
             %p.data-title Shorter
 
