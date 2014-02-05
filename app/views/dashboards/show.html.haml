@@ -6,17 +6,17 @@
   %dl.dash-stats
     %dt
     %dd.dash-set
-      %span.data<> #{@stats.total_distance.round(2)}
+      %span.data<> #{total_distance_in_miles_for(@stats)}
       %span.data-marker mi
       %p.data-title Total Distance
 
     %dd.dash-set
-      %span.data<> #{Formatter.new.format_for_seconds(@stats.average_pace)}
+      %span.data<> #{average_pace_formatted_for(@stats)}
       %span.data-marker /mi
       %p.data-title Average Pace
 
     %dd.dash-set
-      %span.data<> #{@stats.longest_run.round(2)}
+      %span.data<> #{longest_run_in_miles_for(@stats)}
       %span.data-marker mi
       %p.data-title Longest Run
 
