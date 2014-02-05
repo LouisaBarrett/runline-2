@@ -8,6 +8,7 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'coveralls'
 require 'simplecov'
+require './spec/models/object_creation_methods'
 
 SimpleCov.start do
   add_filter 'spec'
@@ -74,6 +75,9 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.include(ObjectCreationMethods)
+
 end
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:mapmyfitness] = OmniAuth::AuthHash.new({
