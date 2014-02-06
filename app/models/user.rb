@@ -20,10 +20,10 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_by_auth(user_data)
     where(:provider => user_data.provider, :uid => user_data.uid).first_or_create(
-                                                                                  username: user_data.first_name + " " + user_data.last_name,
-                                                                                  email: user_data.email,
-                                                                                  token: user_data.token
-                                                                                  )
+      username: user_data.first_name + " " + user_data.last_name,
+      email: user_data.email,
+      token: user_data.token
+    )
   end
 
   def fetch_runs
@@ -31,19 +31,19 @@ class User < ActiveRecord::Base
     runs = store.workouts_by_user_in_last_days(self.uid, 14)
     runs.each do |run|
       Run.where(:mmf_identifier => run.id).first_or_create(
-                                                           user_id: User.find_by_uid(self.uid).id,
-                                                           name: run.name,
-                                                           distance: run.distance,
-                                                           run_time: run.duration,
-                                                           workout_datetime: run.started_at 
-                                                          )
-     end
+        user_id: User.find_by_uid(self.uid).id,
+        name: run.name,
+        distance: run.distance,
+        run_time: run.duration,
+        workout_datetime: run.started_at 
+      )
+    end
   end
 
 
   def approve_friend(friend)
     friendship = Friendship.find_by(user_id: friend.id, friend_id: id) ||
-                 Friendship.find_by(user_id: id, friend_id: friend.id)
+      Friendship.find_by(user_id: id, friend_id: friend.id)
     friendship.update(status: "approved")
   end
 
