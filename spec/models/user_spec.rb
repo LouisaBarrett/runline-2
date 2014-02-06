@@ -56,11 +56,6 @@ describe User do
     expect(@user1.total_approved_friends.count).to eq(3)
   end
 
-  it "can approve a friend" do
-    @user1.approve_friend(@user6)
-    expect(@user1.total_approved_friends.count).to eq(4)
-  end
-
   it "queries its approved friends" do
     expect(@user1.total_approved_friends).to include(@user2)
     expect(@user2.total_approved_friends).to include(@user1)

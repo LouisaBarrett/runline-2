@@ -40,13 +40,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
-  def approve_friend(friend)
-    friendship = Friendship.find_by(user_id: friend.id, friend_id: id) ||
-      Friendship.find_by(user_id: id, friend_id: friend.id)
-    friendship.update(status: "approved")
-  end
-
   def self.invite_new_friend_email(email, username)
     link = "http://runline.tk"
     FriendRequestNotifier.invite_new_friend(email, username, link).deliver
