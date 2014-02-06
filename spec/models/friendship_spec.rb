@@ -35,13 +35,6 @@ describe Friendship do
     expect(@user1.total_approved_friends.count).to eq(1)
   end
 
-  it "can approve a friend" do 
-    expect(@user1.total_approved_friends.count).to eq(2)
-    friendship = create_friendship(user_id: @user4.id, friend_id: @user1.id, status: "pending")
-    friendship.approve
-    expect(@user1.total_approved_friends.count).to eq(3)
-  end
-
   it "can reject a friend" do 
     expect(@user1.total_pending_friends.count).to eq(0)
     friendship = create_friendship(user_id: @user4.id, friend_id: @user1.id, status: "pending")
@@ -52,12 +45,4 @@ describe Friendship do
     expect(@user1.total_pending_friends.count).to eq(0)
   end
 
-  context "changing friendship status" do
-    it "does not create a new friendship id when one already exists" do
-      expect(Friendship.last.id).to eq(3)
-      friendship = Friendship.find_by(user_id: @user1.id, friend_id: @user2.id)
-      friendship.approve
-      expect(Friendship.last.id).to eq(3)
-    end
-  end
 end

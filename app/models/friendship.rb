@@ -7,10 +7,6 @@ class Friendship < ActiveRecord::Base
   validates :friend_id, presence: true
   validates :status, presence: true
 
-  def approve
-    self.update_attributes(:status => "approved")
-  end
-
   def remove
     self.destroy
   end
