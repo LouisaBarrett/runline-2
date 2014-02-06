@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
 
   def create
     friend = User.find(params[:user_id])
-    if AddFriendUseCase.new(current_user, friend).run!
+    if FriendRequestUseCase.new(current_user, friend).process
       flash[:notice] = {:class => "flash", :body => "Your request to #{friend.username} has been sent!"}
     else
       flash[:notice] = {:class =>  "flash", :body => "Could not find that user!"}
@@ -16,7 +16,7 @@ class FriendshipsController < ApplicationController
   end
 
   def approve
-    find_pending_friendship.approve
+    ApproveFriendUseCase.new(current_user.total_pending_friendships.detect { |friendship| friendship.id == params[:id].to_i })
     flash[:notice] = {:class => "flash", :body => "Congrats on having a new friend! You're on your way to being a running social butterfly!"}
     redirect_to :back
   end
