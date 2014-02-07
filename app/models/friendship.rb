@@ -6,13 +6,4 @@ class Friendship < ActiveRecord::Base
   validates :user_id, presence: true
   validates :friend_id, presence: true
   validates :status, presence: true
-
-  def remove
-    self.destroy
-  end
-
-  def reject
-    self.destroy
-  end
-
 end
