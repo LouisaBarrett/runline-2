@@ -16,10 +16,10 @@ describe RemoveFriendshipUseCase do
     expect(Friendship.count).to eq(3)
     @requester = @user1
     @receiver = @user4
-    FriendRequestUseCase.new(@requester, @receiver).process
+    new_friendship = FriendRequestUseCase.new(@requester, @receiver).process
     expect(Friendship.count).to eq(4)
     expect(@receiver.total_pending_friends.count).to eq(1)
-    RemoveFriendshipUseCase.new(@requester, @receiver).process
+    RemoveFriendshipUseCase.new(new_friendship).process
     expect(Friendship.count).to eq(3)
     expect(@receiver.total_pending_friends.count).to eq(0)
   end
@@ -28,13 +28,13 @@ describe RemoveFriendshipUseCase do
     expect(Friendship.count).to eq(3)
     @requester = @user1
     @receiver = @user4
-    friendship = FriendRequestUseCase.new(@requester, @receiver).process
+    new_friendship = FriendRequestUseCase.new(@requester, @receiver).process
     expect(Friendship.count).to eq(4)
     expect(@receiver.total_pending_friends.count).to eq(1)
-    ApproveFriendUseCase.new(friendship).process
+    ApproveFriendUseCase.new(new_friendship).process
     expect(@receiver.total_pending_friends.count).to eq(0)
     expect(@requester.total_approved_friends.count).to eq(3)
-    RemoveFriendshipUseCase.new(@requester, @receiver).process
+    RemoveFriendshipUseCase.new(new_friendship).process
     expect(Friendship.count).to eq(3)
     expect(@receiver.total_pending_friends.count).to eq(0)
   end

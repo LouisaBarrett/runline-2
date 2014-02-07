@@ -1,16 +1,13 @@
 class RemoveFriendshipUseCase
-  
-  attr_reader :requester, :receiver
 
-  def initialize(requester, receiver)
-    @requester = requester
-    @receiver = receiver
+  attr_reader :friendship
+
+  def initialize(friendship)
+    @friendship = friendship
   end
 
   def process
-    friendship = Friendship.find_by(user_id: receiver.id, friend_id: requester.id) ||
-      Friendship.find_by(user_id: requester.id, friend_id: receiver.id)
-    friendship.destroy
+    Friendship.destroy(friendship.id)
   end
 
 end
