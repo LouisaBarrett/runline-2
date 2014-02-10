@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122171707) do
+ActiveRecord::Schema.define(version: 20140210213625) do
+
+  create_table "friendship_temps", force: true do |t|
+    t.integer  "requester"
+    t.integer  "receiver"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "friendship_temps", ["receiver"], name: "index_friendship_temps_on_receiver"
+  add_index "friendship_temps", ["requester"], name: "index_friendship_temps_on_requester"
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id"
