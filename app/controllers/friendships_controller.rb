@@ -1,6 +1,8 @@
 class FriendshipsController < ApplicationController
 
   def index
+    @current_friends = approved_friends
+    @current_pending_friends = pending_friends
   end
 
   def create
@@ -29,5 +31,13 @@ class FriendshipsController < ApplicationController
 
   def current_friendship
     AllFriendships.new(current_user).friends.detect {|friendship| friendship.id == params[:id].to_i}
+  end
+
+  def approved_friends
+    ApprovedFriends.new(current_user).friends
+  end
+
+  def pending_friends
+    ReceiverPendingFriends.new(current_user).friends
   end
 end

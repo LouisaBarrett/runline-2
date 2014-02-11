@@ -6,7 +6,7 @@
         %th.caption Name
         %th &nbsp;
     %tbody
-    - ApprovedFriends.new(current_user).friends.each do |friendship|
+    - @current_friends.each do |friendship|
       %tr
       - if friendship.requester == current_user.id
         %td
@@ -28,7 +28,7 @@
         %th.caption Name
         %th &nbsp;
     %tbody
-      - ReceiverPendingFriends.new(current_user).friends.each do |friendship|
+      - @current_pending_friends.each do |friendship|
         %tr
           %td.action-link-container-approve
             = User.find(friendship.requester).username
