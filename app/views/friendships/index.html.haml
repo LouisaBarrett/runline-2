@@ -13,13 +13,13 @@
           = User.find(friendship.receiver).username
         %td.action-link-container-compare.table-actions
           = link_to "Compare", compare_path(friendship.id), :method => :get, :class => "compare-link"
-          = link_to "/ Remove Friend", remove_friendship_path(friendship), :method => :delete, :class => "remove-link", :confirm => "Are you sure you want to do this?"
+          = link_to "/ Remove Friend", remove_friendship_path(friendship), :method => :delete, :class => "remove-link"
       - else
         %td
           = User.find(friendship.requester).username
         %td.action-link-container-compare.table-actions
           = link_to "Compare", compare_path(friendship.id), :method => :get, :class => "compare-link"
-          = link_to "/ Remove Friend", remove_friendship_path(friendship), :method => :delete, :class => "remove-link", :confirm => "Are you sure you want to do this?"
+          = link_to "/ Remove Friend", remove_friendship_path(friendship), :method => :delete, :class => "remove-link"
 
   %h2.table-title Pending Friends
   %table.table-main
