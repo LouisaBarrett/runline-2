@@ -6,8 +6,8 @@ describe ApproveFriendUseCase do
     @receiver = create_user(username: "user2")
     friendship = FriendRequestUseCase.new(@requester, @receiver).process
     ApproveFriendUseCase.new(friendship).process
-    expect(@receiver.total_approved_friends.count).to eq(1)
-    expect(@requester.total_approved_friends.count).to eq(1)
+    expect(@receiver.receiver_pending_friendships.count).to eq(1)
+    expect(@requester.requester_pending_friendships.count).to eq(1)
   end
 
   it "does not create a new friendship id when one already exists" do

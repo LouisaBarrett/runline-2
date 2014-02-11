@@ -9,22 +9,22 @@ class User < ActiveRecord::Base
   # has_many :friendships, ->(user) { unscoped.where("friend_id = :id or user_id = :id", id: user.id) }
   # # has_many :friendships, ->(user) { where((:id => user.id) | (:friend_id => user.id)) }
   has_many :friends, :through => :friendships
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
+  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "receiver"
   has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   scope :except, proc {|user| where("id != ?", user.id)}
 
   def all_friendships
-    Friendship.where("friend_id = :id or user_id = :id", id: id)
+    Friendship.where("receiver = :id or requester = :id", id: id)
   end
 
-#  def requested_friendships
-#    Friendship.where("user_id = :id", id: id)
-#  end
-#
-#  def pending_friendships
-#    Friendship.where("friend_id = :id", id: id)
-#  end
+  def receiver_pending_friendships
+    Friendship.where("receiver = :id", id: id)
+  end
+
+  def requester_pending_friendships
+    Friendship.where("requester = :id", id: id)
+  end
 
   def self.find_or_create_by_auth(user_data)
     where(:provider => user_data.provider, :uid => user_data.uid).first_or_create(
@@ -75,13 +75,13 @@ class User < ActiveRecord::Base
   end
 
   def approved_friends
-    approved_friendships.where(user_id: id).collect do |friendship|
+    approved_friendships.where(requester: id).collect do |friendship|
       friendship.friend
     end
   end
 
   def approved_inverse_friends
-    approved_inverse_friendships.where(friend_id: id).collect do |friendship|
+    approved_inverse_friendships.where(receiver: id).collect do |friendship|
       friendship.user
     end
   end
@@ -100,13 +100,13 @@ class User < ActiveRecord::Base
   end
 
   def pending_friends
-    pending_friendships.where(user_id: id).collect do |friendship|
+    pending_friendships.where(requester: id).collect do |friendship|
       friendship.friend
     end
   end
 
   def pending_inverse_friends
-    pending_inverse_friendships.where(friend_id: id).collect do |friendship|
+    pending_inverse_friendships.where(receiver: id).collect do |friendship|
       friendship.user
     end
   end
