@@ -22,7 +22,7 @@
         %th.caption Name
         %th.caption &nbsp;
         %tbody
-        - current_user.requester_pending_friendships.each do |friendship|
+        - RequesterPendingFriends.new(current_user).friends.each do |friendship|
           %tr
             %td
               = User.find(friendship.receiver).username 

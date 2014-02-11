@@ -7,6 +7,6 @@ describe FriendRequestUseCase do
     @receiver2 = create_user(username: "user3")
     FriendRequestUseCase.new(@requester, @receiver1).process
     FriendRequestUseCase.new(@requester, @receiver2).process
-    expect(@requester.requester_pending_friendships.count).to eq(2)
+    expect(RequesterPendingFriends.new(@requester).friends.count).to eq(2)
   end
 end
