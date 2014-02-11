@@ -25,7 +25,7 @@ module ObjectCreationMethods
   end
 
   def new_friendship(overrides = {})
-    defaults = {user_id: 1, friend_id: 2, status: "approved"}
+    defaults = {requester: 1, receiver: 2, status: "approved"}
 
     Friendship.new(defaults.merge(overrides))
   end
