@@ -13,7 +13,7 @@ describe AllFriendships do
     create_friendship(requester: @user4.id, receiver: @user3.id, status: "approved")
   end
 
-  it "finds all approved friends" do
+  it "finds all friendships" do
     expect(AllFriendships.new(@user1).friends.count).to eq(2)
     expect(AllFriendships.new(@user2).friends.count).to eq(2)
     expect(AllFriendships.new(@user3).friends.count).to eq(3)
