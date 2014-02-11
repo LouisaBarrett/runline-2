@@ -25,10 +25,6 @@ describe User do
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:username) }
   it { should validate_uniqueness_of(:username) }
-  it { should have_many(:friendships) }
-  it { should have_many(:friends) }
-  it { should have_many(:inverse_friendships) }
-  it { should have_many(:inverse_friends) }
 
   it "should be created with valid attributes" do
     @user1.should be_valid
@@ -44,34 +40,8 @@ describe User do
     @user1.fetch_runs
   end
 
-  xit "can count its friends" do
-    expect(@user1.friends.count).to eq(2)
-  end
-
-  xit "has total approved friends" do
-    expect(@user1.total_approved_friends.count).to_not eq(0)
-  end
-
-  xit "can count approved friends" do
-    expect(@user1.total_approved_friends.count).to eq(3)
-  end
-
-  xit "queries its approved friends" do
-    expect(@user1.total_approved_friends).to include(@user2)
-    expect(@user2.total_approved_friends).to include(@user1)
-  end
-
   it "can find all users except the one passed in" do
     expect(User.except(@user1)).to_not include(@user1)
-  end
-
-  xit "can find all users that are not pending or approved friends or myself" do
-    expect(User.requestable_users(@user1)).to_not include(@user1)
-    expect(User.requestable_users(@user1)).to include(@user4)
-    expect(User.requestable_users(@user1)).to include(@user5)
-    expect(User.requestable_users(@user1)).to_not include(@user2)
-    expect(User.requestable_users(@user1)).to_not include(@user7)
-    expect(User.requestable_users(@user1)).to_not include(@user6)
   end
 
 end

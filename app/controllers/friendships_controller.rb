@@ -32,7 +32,7 @@ class FriendshipsController < ApplicationController
   end
 
   def reject
-    RemoveFriendshipUseCase.new(@current_friendship).process
+    RemoveFriendshipUseCase.new(current_friendship).process
     flash[:notice] = {:class => "flash", :body => "REJECTED!!!"}
     redirect_to :back
   end
@@ -40,6 +40,6 @@ class FriendshipsController < ApplicationController
   private
 
   def current_friendship
-    current_user.all_friendships.detect {|friendship| friendship.id == params[:id].to_i}
+    AllFriendships.new(current_user).friends.detect {|friendship| friendship.id == params[:id].to_i}
   end
 end
