@@ -32,20 +32,20 @@ class Seeder
   end
 
   def generate_run(user)
-    run = Run.create(
+    Run.create(
       name: "quick jog",
       distance: rand(1000..1600),
       run_time: rand(800..1200),
       workout_datetime: "2014-01-09 10:29:09 -0700",
       user_id: user.id
-      )
+    )
   end
 
   def generate_friends
 
-    Friendship.create(user_id: 1, friend_id: 2, status: "approved")
-    Friendship.create(user_id: 1, friend_id: 3, status: "pending")
-    Friendship.create(user_id: 2, friend_id: 3, status: "approved")
+    Friendship.create(requester: 1, receiver: 2, status: "approved")
+    Friendship.create(requester: 1, receiver: 3, status: "pending")
+    Friendship.create(requester: 2, receiver: 3, status: "approved")
   end
 end
 

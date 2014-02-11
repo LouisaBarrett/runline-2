@@ -4,7 +4,6 @@ require './app/models/distance_converter.rb'
 require './app/models/formatter.rb'
 require './app/models/logged_run.rb'
 
-
 describe Stats do
   FakeRun = Struct.new(:distance, :run_time)
   let(:runs){[FakeRun.new(4000, 2455), FakeRun.new(3000, 2355)]}
