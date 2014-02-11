@@ -25,8 +25,6 @@ Runline::Application.routes.draw do
     member do
       put :approve
       delete :remove
-      delete :reject
-      delete :cancel
     end
   end
   delete "/friendships", to: "friendships#destroy"
