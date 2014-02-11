@@ -25,18 +25,6 @@ class FriendshipsController < ApplicationController
     redirect_to :back
   end
 
-  def cancel
-    RemoveFriendshipUseCase.new(current_friendship).process
-    flash[:notice] = {:class => "flash", :body => "You didn't like them anyway."}
-    redirect_to :back
-  end
-
-  def reject
-    RemoveFriendshipUseCase.new(current_friendship).process
-    flash[:notice] = {:class => "flash", :body => "REJECTED!!!"}
-    redirect_to :back
-  end
-
   private
 
   def current_friendship

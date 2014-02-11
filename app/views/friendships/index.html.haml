@@ -34,5 +34,5 @@
             = User.find(friendship.requester).username
           %td.action-link-container-approve.table-actions
             = link_to "Approve", approve_friendship_path(friendship), :method => :put, :class => "approve-link"
-            = link_to "/ Reject", reject_friendship_path(friendship), :method => :delete, :class => "reject-link"
+            = link_to "/ Reject", remove_friendship_path(friendship), :method => :delete, :class => "reject-link"
 

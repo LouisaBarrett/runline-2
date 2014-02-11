@@ -27,7 +27,7 @@
             %td
               = User.find(friendship.receiver).username 
             %td
-              = link_to "Cancel Invite", cancel_friendship_path(friendship), :method => :delete, :class => "cancel-invite", :confirm => "Are you sure?"
+              = link_to "Cancel Invite", remove_friendship_path(friendship), :method => :delete, :class => "cancel-invite", :confirm => "Are you sure?"
 
 :javascript
   jQuery(function() {
