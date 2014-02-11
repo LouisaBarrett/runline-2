@@ -57,17 +57,17 @@ class User < ActiveRecord::Base
   def self.requestable_users(user)
     potential_friends = []
     where("id != ?", user.id).collect do |friend|
-      if !user.total_approved_friends.include?(friend) && !user.total_pending_friends.include?(friend)
+      if !user.receiver_pending_friendships.include?(friend) && !user.requester_pending_friendships.include?(friend)
         potential_friends << friend
       end
     end
     potential_friends
   end
 
-  def total_pending_friends
-    total = pending_friends << pending_inverse_friends
-    total.flatten
-  end
+#  def total_pending_friends
+#    total = pending_friends << pending_inverse_friends
+#    total.flatten
+#  end
 
   def total_approved_friends
     total = approved_friends << approved_inverse_friends
@@ -111,17 +111,17 @@ class User < ActiveRecord::Base
     end
   end
 
-  def total_pending_friendships
-    total = pending_friendships << pending_inverse_friendships
-    total.flatten
-  end
+#  def total_pending_friendships
+#    total = pending_friendships << pending_inverse_friendships
+#    total.flatten
+#  end
 
-  def pending_friendships
-    friendships.where(status: "pending")
-  end
-
-  def pending_inverse_friendships
-    inverse_friendships.where(status: "pending")
-  end
+#  def pending_friendships
+#    friendships.where(status: "pending")
+#  end
+#
+#  def pending_inverse_friendships
+#    inverse_friendships.where(status: "pending")
+#  end
 
 end
