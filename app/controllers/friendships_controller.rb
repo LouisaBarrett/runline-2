@@ -1,4 +1,5 @@
 class FriendshipsController < ApplicationController
+  helper :approved_friends
 
   def index
     @current_friends = approved_friends
