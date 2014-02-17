@@ -4,7 +4,7 @@
     %p.bullet-num 01
     %p.bullet-line Invite an Existing Runline Member to Share their Dashboard:
     = form_tag(add_friend_path) do
-      = select_tag "user", options_from_collection_for_select(User.requestable_users(current_user), "id", "username"), class: 'chosen-select',
+      = select_tag "user", options_from_collection_for_select(EligibleMemberFriendships.new(current_user).requestable_users, "id", "username"), class: 'chosen-select',
         name: 'user_id'
       = submit_tag "Send Request"
 
