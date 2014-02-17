@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
 
   has_many :runs
-  has_many :requesters, :class_name => "Friendship", :foreign_key => "requester"
-  has_many :receivers, :class_name => "Friendship", :foreign_key => "receiver"
+  # has_many :requesters, :class_name => "Friendship", :foreign_key => "requester"
+  # has_many :receivers, :class_name => "Friendship", :foreign_key => "receiver"
 #  has_many :friends, :through => :friendships
 #  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "receiver"
 #  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
@@ -33,23 +33,6 @@ class User < ActiveRecord::Base
         workout_datetime: run.started_at 
       )
     end
-  end
-
-  def self.invite_new_friend_email(email, username)
-    link = "http://runline.tk"
-    FriendRequestNotifier.invite_new_friend(email, username, link).deliver
-  end
-
-
-  def self.requestable_users(user)
-    potential_friends = []
-    where("id != ?", user.id).collect do |friend|
-      if !ReceiverPendingFriends.new(user).friends.include?(friend) && !ReceiverPendingFriends.new(user).friends.include?(friend)
-#      if !user.receiver_pending_friendships.include?(friend) && !user.requester_pending_friendships.include?(friend)
-        potential_friends << friend
-      end
-    end
-    potential_friends
   end
 
 end
