@@ -2,7 +2,8 @@ class SessionsController < ApplicationController
 
   def create
     user_data = MapMyFitness::User.new(request.env["omniauth.auth"])
-    @user = User.find_or_create_by_auth(user_data)
+    @user = FindOrCreateUser.find_or_create_by_auth(user_data)
+    # @user = User.find_or_create_by_auth(user_data)
 
     photo_store = MapMyFitness::PhotoStore.new(@user.token)
     photo_url = photo_store.photo_by(@user.uid)
