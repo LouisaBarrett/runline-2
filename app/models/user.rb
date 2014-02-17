@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
 
   has_many :runs
-  has_many :friendships
-  has_many :friends, :through => :friendships
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "receiver"
-  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  has_many :requesters, :class_name => "Friendship", :foreign_key => "requester"
+  has_many :receivers, :class_name => "Friendship", :foreign_key => "receiver"
+#  has_many :friends, :through => :friendships
+#  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "receiver"
+#  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   scope :except, proc {|user| where("id != ?", user.id)}
 
