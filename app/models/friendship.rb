@@ -7,7 +7,7 @@ class Friendship < ActiveRecord::Base
   # belongs_to :friend, :class_name => "User"
 
 
-  validates :requester, presence: true
-  validates :receiver, presence: true
+  validates :requester_id, presence: true
+  validates :receiver_id, presence: true
   validates :status, presence: true
 end
