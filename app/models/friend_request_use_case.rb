@@ -11,4 +11,5 @@ class FriendRequestUseCase
       Friendship.create(requester: @requester.id, receiver: @receiver.id, status: "pending")
     end
   end
+
 end
