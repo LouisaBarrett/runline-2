@@ -7,10 +7,10 @@ describe ReceiverPendingFriends do
     @user2 = create_user(username: "user2")
     @user3 = create_user(username: "user3")
     @user4 = create_user(username: "user4")
-    create_friendship(requester: @user1.id, receiver: @user2.id, status: "pending")
-    create_friendship(requester: @user1.id, receiver: @user3.id, status: "pending")
-    create_friendship(requester: @user2.id, receiver: @user3.id, status: "pending")
-    create_friendship(requester: @user4.id, receiver: @user3.id, status: "pending")
+    create_friendship(requester_id: @user1.id, receiver_id: @user2.id, status: "pending")
+    create_friendship(requester_id: @user1.id, receiver_id: @user3.id, status: "pending")
+    create_friendship(requester_id: @user2.id, receiver_id: @user3.id, status: "pending")
+    create_friendship(requester_id: @user4.id, receiver_id: @user3.id, status: "pending")
   end
 
   it "finds all approved friends" do

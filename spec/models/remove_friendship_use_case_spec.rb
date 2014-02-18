@@ -7,9 +7,9 @@ describe RemoveFriendshipUseCase do
     @user2 = create_user(username: "user2")
     @user3 = create_user(username: "user3")
     @user4 = create_user(username: "user4")
-    create_friendship(requester: 1, receiver: 2, status: "approved")
-    create_friendship(requester: 1, receiver: 3, status: "approved")
-    create_friendship(requester: 2, receiver: 3, status: "approved")
+    create_friendship(requester_id: 1, receiver_id: 2, status: "approved")
+    create_friendship(requester_id: 1, receiver_id: 3, status: "approved")
+    create_friendship(requester_id: 2, receiver_id: 3, status: "approved")
   end
 
   it "removes a pending friendship" do

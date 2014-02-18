@@ -12,6 +12,6 @@ class ApprovedFriends
   private
 
   def all_friendships
-    Friendship.where("receiver = :id or requester = :id", id: user.id)
+    Friendship.where("receiver_id = :id or requester_id = :id", id: user.id)
   end
 end
