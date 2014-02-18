@@ -1,6 +1,6 @@
-## Runline
+## Runline 2.0
 
-Runline is a gSchool project by Billy Griffin, Luke Martinez, Lauren Spath Luhring, and Bree Thomas.  This app enables users to track their activities with a personalized dashboard and daily feed of their runs, follow friends to see their activities, and compare data with friends. 
+Runline 2.0 is a gSchool project by Louisa Barrett and Bree Thomas.  This app enables users to track their activities with a personalized dashboard and daily feed of their runs, follow friends to see their activities, and compare data with friends. 
 
 
 ###Learning goals
