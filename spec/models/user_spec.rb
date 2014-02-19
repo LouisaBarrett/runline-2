@@ -14,12 +14,12 @@ describe User do
     create_run(run_time: 100, distance: 4000, user_id: @user1.id)
     create_run(run_time: 200, distance: 4000, user_id: @user2.id)
 
-    create_friendship(requester_id: 1, receiver_id: 2, status: "approved")
-    create_friendship(requester_id: 1, receiver_id: 3, status: "approved")
-    create_friendship(requester_id: 7, receiver_id: 1, status: "approved")
-    create_friendship(requester_id: 4, receiver_id: 3, status: "approved")
-    create_friendship(requester_id: 2, receiver_id: 3, status: "pending")
-    create_friendship(requester_id: 6, receiver_id: 1, status: "pending")
+    create_friendship(requester_id: @user1.id, receiver_id: @user2.id, status: "approved")
+    create_friendship(requester_id: @user1.id, receiver_id: @user3.id, status: "approved")
+    create_friendship(requester_id: @user7.id, receiver_id: @user1.id, status: "approved")
+    create_friendship(requester_id: @user4.id, receiver_id: @user3.id, status: "approved")
+    create_friendship(requester_id: @user2.id, receiver_id: @user3.id, status: "pending")
+    create_friendship(requester_id: @user6.id, receiver_id: @user1.id, status: "pending")
   end
 
   it { should validate_presence_of(:email) }
