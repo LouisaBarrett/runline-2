@@ -1,10 +1,5 @@
 class FriendshipsController < ApplicationController
 
-  def index
-    @current_friends = approved_friends
-    @current_pending_friends = pending_friends
-  end
-
   def create
     friend = User.find(params[:user_id])
     if FriendRequestUseCase.new(current_user, friend).process
@@ -33,11 +28,4 @@ class FriendshipsController < ApplicationController
     AllFriendships.new(current_user).friends.detect {|friendship| friendship.id == params[:id].to_i}
   end
 
-  def approved_friends
-    ApprovedFriends.new(current_user).friends
-  end
-
-  def pending_friends
-    ReceiverPendingFriends.new(current_user).friends
-  end
 end

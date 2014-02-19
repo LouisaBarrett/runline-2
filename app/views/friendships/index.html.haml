@@ -6,17 +6,16 @@
         %th.caption Name
         %th &nbsp;
     %tbody
-    - @current_friends.each do |friendship|
+    - current_user.approved_friendships.each do |friendship|
       %tr
       - if friendship.requester == current_user.id
         %td
-          = User.find(friendship.receiver).username
+          = friendship.receiver.username
         %td.action-link-container-compare.table-actions
           = link_to "Compare", compare_path(friendship.id), :method => :get, :class => "compare-link"
           = link_to "/ Remove Friend", remove_friendship_path(friendship), :method => :delete, :class => "remove-link"
       - else
-        %td
-          = User.find(friendship.requester).username
+        %td= friendship.requester.username
         %td.action-link-container-compare.table-actions
           = link_to "Compare", compare_path(friendship.id), :method => :get, :class => "compare-link"
           = link_to "/ Remove Friend", remove_friendship_path(friendship), :method => :delete, :class => "remove-link"
@@ -28,10 +27,10 @@
         %th.caption Name
         %th &nbsp;
     %tbody
-      - @current_pending_friends.each do |friendship|
+      - current_user.receiver_pending_friendships.each do |friendship|
         %tr
           %td.action-link-container-approve
-            = User.find(friendship.requester).username
+            = friendship.requester.username
           %td.action-link-container-approve.table-actions
             = link_to "Approve", approve_friendship_path(friendship), :method => :put, :class => "approve-link"
             = link_to "/ Reject", remove_friendship_path(friendship), :method => :delete, :class => "reject-link"
