@@ -1,4 +1,5 @@
 class RequesterPendingFriends
+
   attr_reader :user
 
   def initialize(user)
@@ -6,7 +7,7 @@ class RequesterPendingFriends
   end
 
   def friends
-    all_friendships.where("requester_id = :id and status = 'pending'", id: user.id)
+    all_friendships.where("requester_id = :id and status = 'pending'", id: user.id).include(:receiver).map(&:receiver)
   end
 
   private
