@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
   validates :email, :presence => true
 
   has_many :runs
-  # has_many :requesters, :class_name => "Friendship", :foreign_key => "requester"
-  # has_many :receivers, :class_name => "Friendship", :foreign_key => "receiver"
+  has_many :requesters, :class_name => "Friendship", :foreign_key => "requester_id"
+  has_many :receivers, :class_name => "Friendship", :foreign_key => "receiver_id"
+
 #  has_many :friends, :through => :friendships
 #  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "receiver"
 #  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
