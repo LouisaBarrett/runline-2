@@ -6,12 +6,7 @@ class ReceiverPendingFriends
   end
 
   def friends
-    all_friendships.where("receiver_id = :id and status = 'pending'", id: user.id)
+    Friendship.where("receiver_id = :id and status = 'pending'", id: user.id).includes(:requester)
   end
 
-  private
-
-  def all_friendships
-    Friendship.where("receiver_id = :id or requester_id = :id", id: user.id)
-  end
 end
