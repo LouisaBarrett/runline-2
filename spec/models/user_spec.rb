@@ -36,12 +36,16 @@ describe User do
     expect(@user1.runs.size).to eq 3
   end
 
-  xit "can fetch the runs for a user" do 
+  xit "can fetch the runs for a user" do
     @user1.fetch_runs
   end
 
   it "can find all users except the one passed in" do
     expect(User.except(@user1)).to_not include(@user1)
+  end
+
+  it "has friends" do
+    @user1.reload.friends.map(&:id).sort.should eq([2, 3, 6, 7])
   end
 
 end
