@@ -45,7 +45,7 @@ describe User do
   end
 
   it "has friends" do
-    @user1.reload.friends.map(&:id).sort.should eq([2, 3, 6, 7])
+    @user1.reload.friends.map(&:id).sort.should eq([2, 3, 7])
   end
 
 end
