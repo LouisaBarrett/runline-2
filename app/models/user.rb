@@ -7,33 +7,23 @@ class User < ActiveRecord::Base
   has_many :runs
   has_many :requesters, :class_name => "Friendship", :foreign_key => "requester_id"
   has_many :receivers, :class_name => "Friendship", :foreign_key => "receiver_id"
+  has_many :friendships
 
-#  has_many :friends, :through => :friendships
+  # has_many :friends, :through => :friendships, :foreign_key => "requester_id"
+
+  def friends
+    receivers = Friendship.where(:receiver_id => self.id).map(&:requester_id)
+    requesters = Friendship.where(:requester_id => self.id).map(&:receiver_id)
+    friends = receivers + requesters
+    User.where(:id => friends.uniq)
+  end
+
+  # has_many :friends, ->(user) {Friendship.all}, :through => :friendships 
+
+  # has_many :friends, :through => :friendships, :conditions => ->(user) {Friendship.where("receiver_id = :id or requester_id = :id", id: user.id)}
 #  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "receiver"
 #  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
 
   scope :except, proc {|user| where("id != ?", user.id)}
-
-  # def self.find_or_create_by_auth(user_data)
-  #   where(:provider => user_data.provider, :uid => user_data.uid).first_or_create(
-  #     username: user_data.first_name + " " + user_data.last_name,
-  #     email: user_data.email,
-  #     token: user_data.token
-  #   )
-  # end
-
-  def fetch_runs
-    store = MapMyFitness::WorkoutStore.new(self.token)
-    runs = store.workouts_by_user_in_last_days(self.uid, 14)
-    runs.each do |run|
-      Run.where(:mmf_identifier => run.id).first_or_create(
-        user_id: User.find_by_uid(self.uid).id,
-        name: run.name,
-        distance: run.distance,
-        run_time: run.duration,
-        workout_datetime: run.started_at 
-      )
-    end
-  end
 
 end
