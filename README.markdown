@@ -2,6 +2,11 @@
 
 Runline 2.0 is a gSchool project by Louisa Barrett and Bree Thomas.  This app enables users to track their activities with a personalized dashboard and daily feed of their runs, follow friends to see their activities, and compare data with friends. 
 
+## Directions
+
+- Clone repo
+- use this URL for localhost: http://www.127.0.0.1.xip.io:3000/
+- You'll need an account with Map My Fitness with runs logged in the last 14 days: https://www.mapmyfitness.com/auth/login/
 
 ###Learning goals
 
