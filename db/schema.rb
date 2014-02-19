@@ -14,14 +14,15 @@
 ActiveRecord::Schema.define(version: 20140218042455) do
 
   create_table "friendships", force: true do |t|
+    t.integer  "requester_id"
+    t.integer  "receiver_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
-    t.integer  "requester_id"
-    t.integer  "receiver_id"
   end
 
   add_index "friendships", ["receiver_id"], name: "index_friendships_on_receiver_id"
+  add_index "friendships", ["requester_id", "receiver_id"], name: "index_friendships_on_requester_id_and_receiver_id"
   add_index "friendships", ["requester_id"], name: "index_friendships_on_requester_id"
 
   create_table "runs", force: true do |t|
