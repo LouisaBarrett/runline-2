@@ -22,10 +22,10 @@
         %th.caption Name
         %th.caption &nbsp;
         %tbody
-        - RequesterPendingFriends.new(current_user).friends.each do |friendship|
+        - current_user.pending_friends.each do |user|
           %tr
             %td
-              = User.find(friendship.receiver).username 
+              = user.username
             %td
               = link_to "Cancel Invite", remove_friendship_path(friendship), :method => :delete, :class => "cancel-invite"
 

@@ -23,4 +23,5 @@ module ApplicationHelper
   def compared_pace_for(diff)
     Formatter.new.format_for_seconds(diff.pace.abs)
   end
+
 end
