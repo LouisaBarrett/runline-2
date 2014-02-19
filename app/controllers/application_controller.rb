@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= lookup_user
+    @current_user ||= UserWithFriendships.new(lookup_user)
   end
 
 # Not sure why this code block was in here...
