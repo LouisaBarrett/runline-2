@@ -1,17 +1,20 @@
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
-require 'rspec/rails'
-require 'rspec/autorun'
-require 'capybara/rspec'
-require 'coveralls'
-require 'simplecov'
-require './spec/models/object_creation_methods'
 
+require 'simplecov'
 SimpleCov.start do
   add_filter 'spec'
 end
 
-Coveralls.wear!('rails')
+if ENV['CI']
+  require 'coveralls'
+  Coveralls.wear!('rails')
+end
+
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'rspec/autorun'
+require 'capybara/rspec'
+require './spec/models/object_creation_methods'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
