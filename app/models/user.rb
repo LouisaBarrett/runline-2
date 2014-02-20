@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     # requesters = Friendship.where(:requester_id => self.id).map(&:receiver_id)
     # friends = receivers + requesters
     # User.where(:id => friends.uniq)
-    friendship_ids = Friendship.where("receiver_id = :id or requester_id = :id", id: id).pluck(:requester_id, :receiver_id).flatten.uniq
+    friendship_ids = Friendship.approved.where("receiver_id = :id or requester_id = :id", id: id).pluck(:requester_id, :receiver_id).flatten.uniq
     # binding.pry
     User.except(id).where(:id => friendship_ids)
     # User.joins(:friendships).where(friendships: {:receiver_id => id})

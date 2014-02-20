@@ -9,4 +9,6 @@ class Friendship < ActiveRecord::Base
   validates :requester_id, presence: true
   validates :receiver_id, presence: true
   validates :status, presence: true
+
+  scope :approved, -> { where(status: "approved") }
 end
