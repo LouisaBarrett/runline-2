@@ -1,7 +1,7 @@
 require 'delegate'
 
 class UserWithFriendships < SimpleDelegator
-
+  
   def requester_pending_friendships
     RequesterPendingFriends.new(self).friends
   end

@@ -25,3 +25,45 @@ class Calculator
     runs.collect(&:run_time).reduce(0, :+).to_f
   end
 end
+
+# class RunCalculator < Calculator
+#   def climb
+#     total / distance
+#   end
+# end
+
+# class RideCalculator < Calculator
+#   def climb
+#     distance / total
+#   end
+# end
+
+
+# def index
+#   @runs  = RunCalculator.new(user.runs)
+#   @rides = RideCalculator.new(user.rides)
+# end
+
+
+# <div id="runs">
+#   <%= render partial: 'stats', locals: {exercise: @runs} %>
+# </div>
+
+# <div id="rides">
+#   <%= render partial: 'stats', locals: {exercise: @rides} %>
+# </div>
+
+# ### stats partial
+
+# <div><%= exercise.climb %></div>
+
+# ### rides view
+
+# <div><%= rides.climb %></div>
+
+# ### with polymorphism
+
+# # exercise = runs
+# exercise = rides
+
+# <div><%= excericise.climb %></div>
