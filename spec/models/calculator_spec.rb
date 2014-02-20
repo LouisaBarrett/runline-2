@@ -1,8 +1,8 @@
+require './spec/fake_run'
 require './app/models/calculator'
 require './app/models/distance_converter'
 
 describe Calculator do
-  FakeRun = Struct.new(:distance, :run_time)
   let(:runs){[FakeRun.new(4000, 2455), FakeRun.new(3000, 2355)]}
   let(:calc){Calculator.new(runs)}
 
