@@ -25,7 +25,7 @@
         - current_user.requester_pending_friendships.each do |friendship|
           %tr
             %td
-              = friendship.requester.username
+              = friendship.receiver.username
             %td
               = link_to "Cancel Invite", remove_friendship_path(friendship), :method => :delete, :class => "cancel-invite"
 
