@@ -39,9 +39,4 @@ describe User do
   xit "can fetch the runs for a user" do 
     @user1.fetch_runs
   end
-
-  it "can find all users except the one passed in" do
-    expect(User.except(@user1)).to_not include(@user1)
-  end
-
 end
