@@ -10,11 +10,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= UserWithFriendships.new(lookup_user)
   end
 
-# Not sure why this code block was in here...
-#  def valid_users 
-#    User.all.collect {|user| user.username}
-#  end
-
   private
 
   def lookup_user
