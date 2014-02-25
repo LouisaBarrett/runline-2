@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', group: :development
 gem 'rails', '4.0.1'
 gem 'chosen-rails'
 gem 'thin'
@@ -37,7 +38,6 @@ group :development, :test do
   gem 'sqlite3'
   gem 'shoulda-matchers'
   gem 'pry'
-  gem 'dotenv-rails'
 end
 
 group :test do
