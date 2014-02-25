@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   has_many :requesters, :class_name => "Friendship", :foreign_key => "requester_id"
   has_many :receivers, :class_name => "Friendship", :foreign_key => "receiver_id"
   has_many :friendships
+  has_many :authentications
 end
