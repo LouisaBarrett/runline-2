@@ -14,13 +14,12 @@ Gemfile.lock
 /public/assets/*.*
 /coverage
 
-runline_test
-runline_development
+# Ignore databases
+db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-runline_development
 
 .env
 
