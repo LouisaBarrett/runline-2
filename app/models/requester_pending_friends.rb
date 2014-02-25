@@ -1,5 +1,4 @@
 class RequesterPendingFriends
-
   attr_reader :user
 
   def initialize(user)
@@ -9,5 +8,4 @@ class RequesterPendingFriends
   def friends
     Friendship.where("requester_id = :id and status = 'pending'", id: user.id).includes(:receiver)
   end
-
 end

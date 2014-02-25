@@ -1,5 +1,4 @@
 class RemoveFriendshipUseCase
-
   attr_reader :friendship
 
   def initialize(friendship)
@@ -9,5 +8,4 @@ class RemoveFriendshipUseCase
   def process
     Friendship.destroy(friendship.id)
   end
-
 end

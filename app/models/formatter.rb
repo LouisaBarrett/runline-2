@@ -18,5 +18,4 @@ class Formatter
     date = Time.parse(input_date)
     date.strftime("%a, %m/%d/%y")
   end
-
 end

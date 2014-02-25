@@ -1,5 +1,4 @@
 class FriendRequestUseCase
-
   def initialize(requester, receiver)
     @requester = requester
     @receiver = receiver
@@ -11,5 +10,4 @@ class FriendRequestUseCase
       Friendship.create(requester_id: @requester.id, receiver_id: @receiver.id, status: "pending")
     end
   end
-
 end

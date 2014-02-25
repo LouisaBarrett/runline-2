@@ -1,5 +1,4 @@
 require 'delegate'
-
 class UserWithFriendships < SimpleDelegator
 
   def requester_pending_friendships
@@ -13,5 +12,4 @@ class UserWithFriendships < SimpleDelegator
   def approved_friendships
     ApprovedFriends.new(self).friends
   end
-
 end

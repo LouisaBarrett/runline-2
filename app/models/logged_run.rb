@@ -1,5 +1,4 @@
 require 'delegate'
-
 class LoggedRun < SimpleDelegator
 
   def miles

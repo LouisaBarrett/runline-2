@@ -3,7 +3,6 @@ class Friendship < ActiveRecord::Base
 
   belongs_to :requester, :primary_key => "id", :class_name => "User", :foreign_key => "requester_id"
   belongs_to :receiver, :primary_key => "id", :class_name => "User", :foreign_key => "receiver_id"
-
   belongs_to :friend, :class_name => "User"
 
   validates :requester_id, presence: true
