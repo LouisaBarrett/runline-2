@@ -9,6 +9,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'omniauth-mapmyfitness-oauth2', :github => "jcasimir/omniauth-mapmyfitness-oauth2"
 gem 'mapmyfitness', :github => "billy22g/mapmyfitness"
+gem 'omniauth-strava-oauth2', "~> 0.0.2"
 gem 'faraday'
 gem 'faker'
 gem 'resque'
