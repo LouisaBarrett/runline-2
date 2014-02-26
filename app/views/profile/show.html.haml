@@ -11,3 +11,5 @@
       = f.label :email
       = f.text_field :email, :value => current_user.email
       = f.submit "Update Email", :class => 'submit-btn'
+
+      = link_to "Add Strava", "/auth/strava" 
