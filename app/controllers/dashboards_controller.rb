@@ -21,11 +21,13 @@ class DashboardsController < ApplicationController
   private
 
   def recent_runs
-    store = MapMyFitness::WorkoutStore.new(current_user.token)
-    runs = store.workouts_by_user_in_last_days(current_user.uid, 14)
+    user_auth = Authentication.where(:user_id => current_user.id, :provider => "mapmyfitness")#&& Authentication.where(:provider => "mapmyfitness")
+    auth = user_auth.first
+    store = MapMyFitness::WorkoutStore.new(auth.token)
+    runs = store.workouts_by_user_in_last_days(auth.uid, 30)
     runs.each do |run|
       Run.where(:mmf_identifier => run.id).first_or_create(
-        user_id: User.find_by_uid(current_user.uid).id,
+        user_id: Authentication.find_by_uid(auth.uid).user_id,
         name: run.name,
         distance: run.distance,
         run_time: run.duration,
