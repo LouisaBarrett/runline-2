@@ -2,22 +2,24 @@ require "pry"
 class SessionsController < ApplicationController
 
   def create
-    user_data = MapMyFitness::User.new(request.env["omniauth.auth"])
-    
-    @user = FindOrCreateUser.find_or_create_by_auth(user_data)
-    # @user = User.find_or_create_by_auth(user_data)
+    if current_user
+      auth_hash = request.env['omniauth.auth']
+      auth = current_user.authentications.where(provider: params[:provider]).first_or_initialize
+      auth.update_attributes! uid: auth_hash.uid, token: auth_hash.credentials.token
+    else
+      user_data = MapMyFitness::User.new(request.env["omniauth.auth"])
 
-    #NOTE: authentication.first will need to be refactored depending 
-    # on how the two different authentication systems are set up
-    photo_store = MapMyFitness::PhotoStore.new(@user.authentications.first.token)
-    #NOTE: should this be in a model?
-    photo_url = photo_store.photo_by(@user.authentications.first.uid)
+      @user = FindOrCreateUser.find_or_create_by_auth(user_data)
+
+      photo_store = MapMyFitness::PhotoStore.new(@user.authentications.first.token)
+      photo_url = photo_store.photo_by(@user.authentications.first.uid)
 
 
-    @user.update_attributes(photo_url: photo_url.first.url)
-    #@user.update_attributes(token: user_data.token, photo_url: photo_url.first.url)
-    session[:user_id] = @user.id
-    @user.save!
+      @user.update_attributes(photo_url: photo_url.first.url)
+      #@user.update_attributes(token: user_data.token, photo_url: photo_url.first.url)
+      session[:user_id] = @user.id
+      @user.save!
+    end
     
     redirect_to dashboard_path
   end
