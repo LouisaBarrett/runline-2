@@ -12,4 +12,9 @@ class UserWithFriendships < SimpleDelegator
   def approved_friendships
     ApprovedFriends.new(self).friends
   end
+
+  def self.model_name
+    User.model_name
+  end
+
 end
